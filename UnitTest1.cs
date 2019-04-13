@@ -80,14 +80,15 @@ namespace ClassLibrary1
         private string ToRoman(int number)
         {
 
-            return Hundreds[DigitAtPosition(number, 100)] +
-                Tens[DigitAtPosition(number, 10)] +
-                Ones[DigitAtPosition(number, 1)];
+            return Hundreds[DigitAtPosition(number, 2)] +
+                Tens[DigitAtPosition(number, 1)] +
+                Ones[DigitAtPosition(number, 0)];
         }
 
         private static int DigitAtPosition(int number, int position)
         {
-            return number/position%10;
+            var asdf = (int) Math.Pow(10,position);
+            return number / asdf % 10;
         }
     }
 }
