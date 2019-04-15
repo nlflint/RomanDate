@@ -34,7 +34,11 @@ namespace Roman
 
         public string FromDate(string date)
         {
-            return "I/I/I";
+            return string.Join('/', date
+                .Split('/')
+                .Select(int.Parse)
+                .Select(FromInt));
+
         }
     }
 }
