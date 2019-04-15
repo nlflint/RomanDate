@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "roman", "roman.csproj", "{105D7A1A-152B-4D30-A91E-2621301583CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roman", "Roman.csproj", "{105D7A1A-152B-4D30-A91E-2621301583CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
