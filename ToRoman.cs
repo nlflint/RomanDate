@@ -31,5 +31,10 @@ namespace Roman
                 number /= 10;
             } while (number > 0);
         }
+
+        public string FromDate(string date)
+        {
+            return "I/I/I";
+        }
     }
 }
