@@ -12,26 +12,26 @@ namespace ClassLibrary1
         [Fact]
         public void Test()
         {
-            Assert.Equal(ToRoman(1), "I");
-            Assert.Equal(ToRoman(2), "II");
-            Assert.Equal(ToRoman(4), "IV");
-            Assert.Equal(ToRoman(5), "V");
-            Assert.Equal(ToRoman(8), "VIII");
-            Assert.Equal(ToRoman(9), "IX");
-            Assert.Equal(ToRoman(0), "");
+            Assert.Equal("I", ToRoman(1));
+            Assert.Equal("II", ToRoman(2));
+            Assert.Equal("IV", ToRoman(4));
+            Assert.Equal("V", ToRoman(5));
+            Assert.Equal("VIII", ToRoman(8));
+            Assert.Equal("IX", ToRoman(9));
+            Assert.Equal("", ToRoman(0));
 
-            Assert.Equal(ToRoman(10), "X");
-            Assert.Equal(ToRoman(46), "XLVI");
-            Assert.Equal(ToRoman(39), "XXXIX");
-            Assert.Equal(ToRoman(51), "LI");
-            Assert.Equal(ToRoman(99), "XCIX");
+            Assert.Equal("X", ToRoman(10));
+            Assert.Equal("XLVI", ToRoman(46));
+            Assert.Equal("XXXIX", ToRoman(39));
+            Assert.Equal("LI", ToRoman(51));
+            Assert.Equal("XCIX", ToRoman(99));
 
-            Assert.Equal(ToRoman(513), "DXIII");
-            Assert.Equal(ToRoman(326), "CCCXXVI");
-            Assert.Equal(ToRoman(188), "CLXXXVIII");
-            Assert.Equal(ToRoman(882), "DCCCLXXXII");
-            Assert.Equal(ToRoman(970), "CMLXX");
-            Assert.Equal(ToRoman(999), "CMXCIX");
+            Assert.Equal("DXIII", ToRoman(513));
+            Assert.Equal("CCCXXVI", ToRoman(326));
+            Assert.Equal("CLXXXVIII", ToRoman(188));
+            Assert.Equal("DCCCLXXXII", ToRoman(882));
+            Assert.Equal("CMLXX", ToRoman(970));
+            Assert.Equal("CMXCIX", ToRoman(999));
 
         }
         
