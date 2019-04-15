@@ -6,41 +6,67 @@ using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace ClassLibrary1
+namespace Roman
 {
-    public class Roman
+    public class ToRoman_FromInt_Tests
     {
-        private readonly ITestOutputHelper output;
+        private roman.ToRoman _toRoman;
 
-        public Roman(ITestOutputHelper output)
+        public ToRoman_FromInt_Tests()
         {
-            this.output = output;
+            _toRoman = new roman.ToRoman();
         }
 
+        private string ToRoman(int number) => _toRoman.FromInt(number);
+
         [Fact]
-        public void Test()
+        public void OnesPlace()
         {
             Assert.Equal("I", ToRoman(1));
             Assert.Equal("II", ToRoman(2));
+            Assert.Equal("III", ToRoman(3));
             Assert.Equal("IV", ToRoman(4));
             Assert.Equal("V", ToRoman(5));
+            Assert.Equal("VI", ToRoman(6));
+            Assert.Equal("VII", ToRoman(7));
             Assert.Equal("VIII", ToRoman(8));
             Assert.Equal("IX", ToRoman(9));
             Assert.Equal("", ToRoman(0));
+        }
 
+        [Fact]
+        public void TensPlace()
+        {
             Assert.Equal("X", ToRoman(10));
-            Assert.Equal("XLVI", ToRoman(46));
-            Assert.Equal("XXXIX", ToRoman(39));
-            Assert.Equal("LI", ToRoman(51));
+            Assert.Equal("XX", ToRoman(20));
+            Assert.Equal("XXX", ToRoman(30));
+            Assert.Equal("XL", ToRoman(40));
+            Assert.Equal("L", ToRoman(50));
+            Assert.Equal("LX", ToRoman(60));
+            Assert.Equal("LXX", ToRoman(70));
+            Assert.Equal("LXXX", ToRoman(80));
+            Assert.Equal("XC", ToRoman(90));
             Assert.Equal("XCIX", ToRoman(99));
+        }
 
-            Assert.Equal("DXIII", ToRoman(513));
-            Assert.Equal("CCCXXVI", ToRoman(326));
-            Assert.Equal("CLXXXVIII", ToRoman(188));
-            Assert.Equal("DCCCLXXXII", ToRoman(882));
-            Assert.Equal("CMLXX", ToRoman(970));
+        [Fact]
+        public void HundredsPlace()
+        {
+            Assert.Equal("C", ToRoman(100));
+            Assert.Equal("CC", ToRoman(200));
+            Assert.Equal("CCC", ToRoman(300));
+            Assert.Equal("CD", ToRoman(400));
+            Assert.Equal("D", ToRoman(500));
+            Assert.Equal("DC", ToRoman(600));
+            Assert.Equal("DCC", ToRoman(700));
+            Assert.Equal("DCCC", ToRoman(800));
+            Assert.Equal("CM", ToRoman(900));
             Assert.Equal("CMXCIX", ToRoman(999));
+        }
 
+        [Fact]
+        public void ThousandsPlace()
+        {
             Assert.Equal("M", ToRoman(1000));
             Assert.Equal("MM", ToRoman(2000));
             Assert.Equal("MMM", ToRoman(3000));
@@ -51,31 +77,6 @@ namespace ClassLibrary1
             Assert.Equal("VIII", ToRoman(8000));
             Assert.Equal("IX", ToRoman(9000));
             Assert.Equal("IXCMXCIX", ToRoman(9999));
-        }
-
-        private string[][] _numeralsByPowersOfTen =
-        {
-            new[] {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
-            new[] {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},
-            new[] {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"},
-            new[] {"", "M", "MM", "MMM", "IV", "V", "VI", "VII", "VIII", "IX"}
-        };
-        
-        private string ToRoman(int number)
-        {
-            return BreakIntoDigits(number)
-                .Zip(_numeralsByPowersOfTen, (digit, numerals) => numerals[digit])
-                .Reverse()
-                .Aggregate(string.Concat);
-        }
-
-        private IEnumerable<int> BreakIntoDigits(int number)
-        {
-            do
-            {
-                yield return number % 10;
-                number /= 10;
-            } while (number > 0);
         }
     }
 }
