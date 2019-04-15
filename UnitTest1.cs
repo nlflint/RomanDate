@@ -35,7 +35,7 @@ namespace ClassLibrary1
 
         }
         
-        private List<Dictionary<int, string>> RomanByPowers = new List<Dictionary<int, string>>
+        private List<Dictionary<int, string>> RomanSetByMagnitude = new List<Dictionary<int, string>>
         {
             new Dictionary<int, string>
             {
@@ -78,16 +78,53 @@ namespace ClassLibrary1
             }
         };
         
+        
+        private List<string> Denominations = new [] {"I","V","X","L","C","D","M"}.ToList();
         private string ToRoman(int number)
         {
-            return Enumerable
-                .Range(0,3)
-                .Aggregate("", (acc, power) => {
-                    var powerSet = RomanByPowers[power];
-                    return powerSet[DigitAtPosition(number, power)] + acc;
-            });
+            var digitsByMagnitude = BreakIntoDigits(number);
+
+            var denominationsByMagnitude = Enumerable
+                .Range(0, (Denominations.Count - 1) / 2)
+                .Select(magnitude => new DenominationSet(Denominations.Skip(2 * magnitude).Take(3).ToList()));
+
+                var blah = denominationsByMagnitude.Skip(1).First();
+                Console.WriteLine("num: ",  blah.Small);
+                // .Zip(digitsByMagnitude, DigitToRoman)
+                // .Aggregate(string.Concat);
+
+            return RomanSetByMagnitude
+                .Select(
+                    (romanSet, idx) => romanSet[DigitAtPosition(number, idx)])
+                .Reverse()    
+                .Aggregate(string.Concat);
+
+            // return Enumerable
+            //     .Range(0,3)
+            //     .Aggregate("", (acc, power) => {
+            //         var powerSet = RomanSetByMagnitude[power];
+            //         return powerSet[DigitAtPosition(number, power)] + acc;
+            // });
         }
 
+        private string DigitToRoman(DenominationSet set, int digit) {
+            if (digit == 0) return "";
+                    if (digit < 4) return new String(set.Small.First(),digit);
+                    if (digit == 4) return set.Small + set.Medium;
+                    if (digit == 5) return set.Medium;
+                    if (digit < 9) return set.Medium + new String(set.Small.First(),digit - 5);
+                    return set.Medium + set.Large;
+        }
+        private IEnumerable<int> BreakIntoDigits(int number) {
+            while(number > 0) {
+                yield return number  % 10;
+                number /= 10;
+            }
+        }
+
+        private string ConvertOrderOfMagnitude(List<string> Denominations, int magnitude) {
+            return "asdf";
+        }
         private static int DigitAtPosition(int number, int position)
         {
             var asdf = (int) Math.Pow(10,position);
