@@ -7,7 +7,7 @@ namespace Roman
 {
     public class ToRoman
     {
-        private string[][] _numeralsByPowersOfTen =
+        private string[][] _numeralSetsByPowersOfTen =
         {
             new[] {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
             new[] {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},
@@ -18,7 +18,7 @@ namespace Roman
         public string FromInt(int number)
         {
             return BreakIntoDigits(number)
-                .Zip(_numeralsByPowersOfTen, (digit, numerals) => numerals[digit])
+                .Zip(_numeralSetsByPowersOfTen, (digit, numerals) => numerals[digit])
                 .Reverse()
                 .Aggregate(string.Concat);
         }
