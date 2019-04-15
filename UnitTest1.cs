@@ -71,9 +71,11 @@ namespace ClassLibrary1
 
         private IEnumerable<int> BreakIntoDigits(int number)
         {
-            if (number == 0) return new List<int> {0};
-
-            return new List<int> {number % 10 }.Concat(BreakIntoDigits(number / 10));
+            do
+            {
+                yield return number % 10;
+                number /= 10;
+            } while (number > 0);
         }
     }
 }
