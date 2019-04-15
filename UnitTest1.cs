@@ -33,6 +33,13 @@ namespace ClassLibrary1
             Assert.Equal("CMLXX", ToRoman(970));
             Assert.Equal("CMXCIX", ToRoman(999));
 
+            Assert.Equal("M", ToRoman(1000));
+            Assert.Equal("MCXCIX", ToRoman(1199));
+            Assert.Equal("MMMCMXCIX", ToRoman(3999));
+            Assert.Equal("IVDCLXXVIII", ToRoman(4678));
+            Assert.Equal("VMDCXLIII", ToRoman(6643));
+            Assert.Equal("IXCMXCIX", ToRoman(9999));
+
         }
         
         private string ToRoman(int number)
@@ -64,7 +71,7 @@ namespace ClassLibrary1
     }
 
     public class DenominationSetFactory {
-        private List<string> _denominations = new [] {"I","V","X","L","C","D","M"}.ToList();
+        private List<string> _denominations = new [] {"I","V","X","L","C","D","M","V","X"}.ToList();
         public DenominationSet Make(int powerOfTen) {
             var subSet = _denominations.Skip(2 * powerOfTen).Take(3).ToList();
             return new DenominationSet(subSet[0], subSet[1], subSet[2]);
