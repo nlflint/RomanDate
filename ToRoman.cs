@@ -5,7 +5,7 @@ namespace Roman
 {
     public class ToRoman
     {
-        private string[][] _numeralSetsByPowersOfTen =
+        private readonly string[][] _numeralSetsByPowersOfTen =
         {
             new[] {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
             new[] {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},
