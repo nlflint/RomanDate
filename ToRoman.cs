@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Roman
 {
@@ -18,7 +16,7 @@ namespace Roman
         public string FromInt(int number)
         {
             return BreakIntoDigits(number)
-                .Zip(_numeralSetsByPowersOfTen, (digit, numerals) => numerals[digit])
+                .Zip(_numeralSetsByPowersOfTen, NumeralFromDigit)
                 .Reverse()
                 .Aggregate(string.Concat);
         }
@@ -32,6 +30,8 @@ namespace Roman
             } while (number > 0);
         }
 
+        private string NumeralFromDigit(int digit, string[] numeralSet) => numeralSet[digit];
+        
         public string FromDate(string date)
         {
             return string.Join('/', date
